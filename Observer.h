@@ -5,6 +5,16 @@
 #include <algorithm>
 #include <string>
 
+// 옵저버 패턴은 GUI 컴포넌트들에서 일반적으로 적용된다.
+// 다른 객체들의 클래스들과 결합하지 않고, 해당 객체들에서 발생하는 이벤트들에 반응하는 방법을 제공한다.
+
+// 장점
+// Open Closed Principle
+// 런타임에 객체 간의 관계를 형성할 수 있다.
+
+// 단점
+// Subscriber들은 무작위로 Notify를 받는다.
+
 class IObserver 
 {
 public:
@@ -49,6 +59,7 @@ public:
         
         while (iterator != m_vecObserver.end()) 
         {
+            // 구독하고 있는 IObserver를 순회하며 Update를 호출한다.
             (*iterator)->Update(m_strMessage);
             ++iterator;
         }
