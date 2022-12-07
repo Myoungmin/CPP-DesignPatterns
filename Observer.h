@@ -53,15 +53,21 @@ public:
 
     void Notify() override 
     {
-        std::vector<IObserver*>::iterator iterator = m_vecObserver.begin();
+        //std::vector<IObserver*>::iterator iterator = m_vecObserver.begin();
         
         HowManyObserver();
         
-        while (iterator != m_vecObserver.end()) 
+        //while (iterator != m_vecObserver.end()) 
+        //{
+        //    // 구독하고 있는 IObserver를 순회하며 Update를 호출한다.
+        //    (*iterator)->Update(m_strMessage);
+        //    ++iterator;
+        //}
+
+        // 범위기반 for문으로 구독하고 있는 IObserver를 순회하며 Update를 호출한다.
+        for (auto& iter : m_vecObserver)
         {
-            // 구독하고 있는 IObserver를 순회하며 Update를 호출한다.
-            (*iterator)->Update(m_strMessage);
-            ++iterator;
+            iter->Update(m_strMessage);
         }
     }
 
